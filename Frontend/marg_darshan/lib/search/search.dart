@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:marg_darshan/Chat/1.dart';
 import 'package:marg_darshan/entities.dart';
 import 'package:marg_darshan/global.dart';
 
@@ -73,13 +74,6 @@ class _SearchState extends State<Search> {
           SizedBox(height: MediaQuery.of(context).size.height / 14),
           Row(
             children: [
-              IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    signin1(_search.text).then((value) => {
-                          if (value != null) {state1()}
-                        });
-                  }),
               Card(
                 elevation: 1.5,
                 child: Container(
@@ -100,6 +94,13 @@ class _SearchState extends State<Search> {
                   ),
                 ),
               ),
+              IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    signin1(_search.text).then((value) => {
+                          if (value != null) {state1()}
+                        });
+                  }),
             ],
           ),
           if (f == 0)
@@ -163,13 +164,14 @@ class _SearchState extends State<Search> {
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
                           onTap: () {
-                            // print("first search screen ${data[index].id}");
-                            //id3 = data[index].id;
-                            //name1 = data[index].name;
-                            //Navigator.push(
-                            //  context,
-                            //MaterialPageRoute(
-                            //  builder: (context) => MyApp()));
+                            id3 = data[index].id;
+                            name1 = data[index].name;
+                            college1 = data[index].college;
+                            images2 = images1[index];
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyApp()));
                           },
                           child: Card(
                             elevation: 15,
