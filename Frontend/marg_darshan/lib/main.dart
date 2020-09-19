@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:marg_darshan/Splashscreen/splash.dart';
 import 'package:marg_darshan/studentLogin/studentlogin.dart';
 
 void main() {
   runApp(MaterialApp(
     theme: ThemeData.dark(),
-    home: First(),
+    home: Initial(),
     debugShowCheckedModeBanner: false,
   ));
 }
