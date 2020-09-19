@@ -62,6 +62,14 @@ flutter:
     - images/Ellipse 4.png
     - images/college1.png
     - images/college2.png
+    - images/profile1.jpeg
+    - images/profile2.jpeg
+    - images/profile3.jpg
+    - images/profile4.jpeg
+    - images/profile5.jpeg
+    - images/profile6.jpg
+    - images/profile7.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
