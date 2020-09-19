@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:marg_darshan/BottomNavigationBar/bottombar.dart';
 import 'package:marg_darshan/studentLogin/Register/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -35,12 +36,12 @@ class _HomeState extends State<Home> {
         token = jsonresponse["token"];
         signin1(token).then((val) {
           name = val.toString();
-          /* Navigator.push(
+          Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => Bottom(
                         name: name,
-                      )));*/
+                      )));
         });
       }
     } else {
