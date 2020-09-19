@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marg_darshan/Chat/3.dart';
 import 'package:marg_darshan/Chat/chatmodel.dart';
@@ -79,35 +80,65 @@ class _AllChatsPageState extends State<AllChatsPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 2,
-                          child: RaisedButton(
-                              color: Colors.deepOrange,
-                              child: Text(
-                                "Request",
-                              ),
-                              onPressed: () {}),
+                        GestureDetector(
+                          child: Text(
+                            "Request",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              f = 1;
+                            });
+                          },
+                          onDoubleTap: () {
+                            setState(() {
+                              f = 0;
+                            });
+                          },
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 2,
-                          child: RaisedButton(
-                              color: Colors.deepOrange,
-                              child: Text(
-                                "Chat",
+                        if (f == 1)
+                          Padding(
+                            padding: const EdgeInsets.all(70.0),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width / 9,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: CircleAvatar(
+                                      radius: 40,
+                                      backgroundColor: Colors.grey[100],
+                                      child: Center(
+                                        child: Icon(
+                                            CupertinoIcons.video_camera_solid),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      friendClicked(friend);
+                                    },
+                                    child: CircleAvatar(
+                                      radius: 40,
+                                      backgroundColor: Colors.grey[100],
+                                      child: Center(
+                                        child: Icon(Icons.chat_bubble_outline),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
-                              onPressed: () {
-                                //friendClicked(friend);
-                              }),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 2,
-                          child: RaisedButton(
-                              color: Colors.deepOrange,
-                              child: Text(
-                                "Video",
-                              ),
-                              onPressed: () {}),
-                        ),
+                            ),
+                          )
                       ],
                     ),
                   ),
