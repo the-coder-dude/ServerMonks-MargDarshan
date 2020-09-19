@@ -29,11 +29,13 @@ var functions = {
         if (err) throw err;
         if (!user) {
           res.status(403).send({
+            // when the student authentication is unauthorised
             success: false,
-            msg: "Authentication Failed, User not found",
+            msg: "Authentication Failed, User is not found",
           });
         } else {
           user.comparePassword(req.body.password, function (err, isMatch) {
+            //mismatch in students password
             if (isMatch && !err) {
               var token = jwt.encode(user, config.secret);
               res.json({ success: true, token: token });
@@ -49,13 +51,14 @@ var functions = {
     );
   },
   getinfo: function (req, res) {
+    //generating login token
     if (
       req.headers.authorization &&
       req.headers.authorization.split(" ")[0] === "Bearer"
     ) {
       var token = req.headers.authorization.split(" ")[1];
       var decodedtoken = jwt.decode(token, config.secret);
-      return res.json({ success: true, msg: "Hello " + decodedtoken.email });
+      return res.json({ success: true, msg: "Hello " + decodedtoken.email }); //getting students email from database
     } else {
       return res.json({ success: false, msg: "No Headers" });
     }
