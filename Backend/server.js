@@ -40,6 +40,21 @@ app.get("/search/:college", async (req, res) => {
     .catch((e) => console.error(e));
 });
 
+app.post("/sendrequest", async (req, res) => {
+  const accountSid = process.env.TWILIO_ACC;
+  const authToken = process.env.TWILIO_AUTH;
+  const client = require("twilio")(accountSid, authToken);
+
+  client.messages
+    .create({
+      body:
+        "Dear Mentor, there is a student request pending, please give a reply ASAP on MargDarshan App",
+      from: "+13345085019",
+      to: "+919039365952",
+    })
+    .then((message) => res.status(500).send("SMS sent!"));
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(
