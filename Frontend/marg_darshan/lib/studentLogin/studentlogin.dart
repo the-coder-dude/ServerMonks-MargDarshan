@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marg_darshan/BottomNavigationBar/bottombar.dart';
 import 'package:marg_darshan/studentLogin/Register/register.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -110,22 +111,30 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 10,
             ),
-            Image.asset(
-              'images/1.jpg',
-              filterQuality: FilterQuality.high,
-              fit: BoxFit.contain,
-              height: MediaQuery.of(context).size.height / 3.7,
+            SvgPicture.asset(
+              "images/1.svg",
+              width: MediaQuery.of(context).size.height / 8,
+              height: MediaQuery.of(context).size.height / 4,
             ),
-            Text("Hello There",
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 25,
-                )),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Hello There",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 25,
+                  )),
+            ),
             Text("Please Login",
                 style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontSize: 25,
                     fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -155,6 +164,7 @@ class _HomeState extends State<Home> {
                     width: MediaQuery.of(context).size.width / 1.2,
                     height: MediaQuery.of(context).size.height / 13,
                     child: TextField(
+                      obscureText: true,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                           hintText: "Password",
@@ -171,15 +181,17 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width / 1.3,
-              height: MediaQuery.of(context).size.height / 14,
+              height: MediaQuery.of(context).size.height / 12,
               child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
                 onPressed: () {
                   signin(_email.text, _pwd.text);
                 },
                 child: Text("Login",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+                        color: Colors.black,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold)),
                 color: Hexcolor('#81D4FA'),
               ),

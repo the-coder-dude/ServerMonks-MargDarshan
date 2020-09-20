@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:marg_darshan/Screen/newscreen.dart';
+import 'package:marg_darshan/Studentprofile/profiletwo.dart';
 import 'package:marg_darshan/search/search.dart';
 
 class Bottom extends StatefulWidget {
@@ -20,10 +21,7 @@ class _BottomState extends State<Bottom> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> widget1 = [
-      Newscreen(),
-      Search() /* Profile()*/
-    ];
+    List<Widget> widget1 = [Newscreen(), Search(), Profile()];
 
     return Scaffold(
       body: widget1.elementAt(index),

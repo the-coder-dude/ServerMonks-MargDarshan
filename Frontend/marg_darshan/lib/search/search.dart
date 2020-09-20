@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:marg_darshan/Chat/1.dart';
@@ -15,18 +16,18 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   List<String> college = [
-    "IISC College",
-    "Hanshraj",
-    "Anna",
+    "IISC Banglore",
+    "Hanshraj College",
+    "IIT Madras",
     "VIT Vellore",
     "IIT Delhi"
   ];
   List<String> name = [
-    "Shubham",
-    "Anoushka",
-    "Prabhakar",
-    "Ajay Singh",
-    "Shurya  S"
+    "Shubham Mehta",
+    "Anoushka Bisht",
+    "Prabhakar Singh",
+    "Ajay Singh Chauhan",
+    "Shurya  Singh"
   ];
   List<String> gender = ["Male", "Female", "Male", "Male", "Male"];
   List<String> images = [
@@ -74,13 +75,16 @@ class _SearchState extends State<Search> {
           SizedBox(height: MediaQuery.of(context).size.height / 14),
           Row(
             children: [
+              SizedBox(width: 10),
               Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 elevation: 1.5,
                 child: Container(
                   width: MediaQuery.of(context).size.width / 1.2,
                   height: MediaQuery.of(context).size.height / 16,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: TextField(
                       onTap: () {
                         setState(() {
@@ -92,6 +96,8 @@ class _SearchState extends State<Search> {
                           border: InputBorder.none, hintText: "Search"),
                     ),
                   ),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
                 ),
               ),
               IconButton(
@@ -109,45 +115,60 @@ class _SearchState extends State<Search> {
                     itemCount: name.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Card(
-                          elevation: 15,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          elevation: 29,
                           child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 7,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8)),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 6.3,
                             child: Padding(
-                              padding: const EdgeInsets.all(6.0),
+                              padding: const EdgeInsets.all(18.0),
                               child: Row(
                                 children: [
+                                  Column(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 30,
+                                        backgroundImage:
+                                            ExactAssetImage(images[index]),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(7.0),
+                                        child: Text(gender[index],
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white54)),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          12),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(name[index],
-                                            style: TextStyle(fontSize: 16)),
+                                      SizedBox(
+                                        height: 5,
                                       ),
+                                      Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(name[index],
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight:
+                                                      FontWeight.bold))),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(college[index],
                                             style: TextStyle(fontSize: 16)),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(gender[index],
-                                            style: TextStyle(fontSize: 16)),
-                                      )
                                     ],
                                   ),
-                                  SizedBox(
-                                      width: MediaQuery.of(context).size.width /
-                                          2),
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage:
-                                        ExactAssetImage(images[index]),
-                                  )
                                 ],
                               ),
                             ),
@@ -174,43 +195,68 @@ class _SearchState extends State<Search> {
                                     builder: (context) => MyApp()));
                           },
                           child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
                             elevation: 15,
                             child: Container(
-                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8)),
+                              width: MediaQuery.of(context).size.width / 2,
                               height: MediaQuery.of(context).size.height / 7,
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(data[index].name,
-                                            style: TextStyle(fontSize: 16)),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(data[index].gender,
-                                            style: TextStyle(fontSize: 16)),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(data[index].college,
-                                            style: TextStyle(fontSize: 16)),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.8,
-                                  ),
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage:
-                                        ExactAssetImage(images1[index]),
-                                  )
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        CircleAvatar(
+                                          radius: 30,
+                                          backgroundImage:
+                                              ExactAssetImage(images1[index]),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(7.0),
+                                          child: Text(data[index].gender,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.white54)),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          12,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(data[index].name,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold))),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(data[index].college,
+                                              style: TextStyle(fontSize: 16)),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          2.8,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

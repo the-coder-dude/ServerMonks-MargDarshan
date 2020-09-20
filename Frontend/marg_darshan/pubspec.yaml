@@ -36,6 +36,9 @@ dependencies:
   flutter_socket_io: 
   custom_splash: ^0.0.2
   flutter_launcher_icons: ^0.8.0
+  agora_rtc_engine: ^3.0.1-dev.7
+  permission_handler: ^3.0.0
+  flutter_svg: ^0.19.0
 
 
 dev_dependencies:
@@ -61,9 +64,12 @@ flutter:
   assets:
     - images/1.jpg
     - images/2.png
+    - images/1.svg
     - images/3.png
     - images/Logo.png
     - images/icon.png
+    - images/ellipse5.png
+    - images/logo.svg
     - images/Ellipse 1.png
     - images/Ellipse 2.png
     - images/Ellipse 3.png

@@ -55,6 +55,8 @@ class _NewscreenState extends State<Newscreen> {
                         Positioned(
                           bottom: 20,
                           child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20)),
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height / 4,
                             child: ListView.builder(
@@ -64,9 +66,15 @@ class _NewscreenState extends State<Newscreen> {
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Card(
-                                      elevation: 15,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      elevation: 18,
                                       child: Container(
-                                        color: Colors.black12,
+                                        decoration: BoxDecoration(
+                                            color: Colors.black12,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
                                         width:
                                             MediaQuery.of(context).size.width /
                                                 2,
@@ -123,11 +131,15 @@ class _NewscreenState extends State<Newscreen> {
                     padding: const EdgeInsets.all(20.0),
                     child: Center(
                       child: Card(
-                        elevation: 10,
+                        elevation: 16,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                         child: Container(
                           width: MediaQuery.of(context).size.width / 1,
                           height: MediaQuery.of(context).size.height / 1.5,
-                          color: Colors.black12,
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             children: [
                               Padding(

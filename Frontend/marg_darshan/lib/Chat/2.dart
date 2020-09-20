@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:marg_darshan/Chat/3.dart';
 import 'package:marg_darshan/Chat/chatmodel.dart';
 import 'package:marg_darshan/Chat/user.dart';
 import 'package:marg_darshan/global.dart';
+import 'package:marg_darshan/video.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:http/http.dart' as http;
 
 class AllChatsPage extends StatefulWidget {
   @override
@@ -39,66 +42,107 @@ class _AllChatsPageState extends State<AllChatsPage> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 15,
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage: ExactAssetImage(images2),
-                      ),
-                    ),
-                    Column(
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 7,
+                  color: Hexcolor('#81D4FA'),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(13.0),
-                          child: Text(
-                            friend.name,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold),
+                          padding: const EdgeInsets.all(15.0),
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: ExactAssetImage(images2),
                           ),
                         ),
-                        Text(
-                          college1,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 7,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                                friend.name,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Text(
+                              college1,
+                              style: TextStyle(
+                                  color: Colors.black45,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 4),
+                SizedBox(height: MediaQuery.of(context).size.height / 2.2),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        GestureDetector(
-                          child: Text(
-                            "Request",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
+                        if (f == 0)
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.5,
+                            height: MediaQuery.of(context).size.height / 14,
+                            child: RaisedButton(
+                                onLongPress: () {
+                                  setState(() {
+                                    f = 0;
+                                  });
+                                },
+                                elevation: 9,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                color: Hexcolor('#81D4FA'),
+                                child: Center(
+                                  child: Text("Request ",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                                onPressed: () async {
+                                  var url =
+                                      'https://careerapp-auth.herokuapp.com/sendrequest';
+                                  var res = await http.post(url);
+                                  if (res.statusCode == 201) {
+                                    showDialog(
+                                        context: (context),
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            content: Text(
+                                              "SMS Sent!\nPlease wait for mentor to respond",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            actions: [
+                                              FlatButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    setState(() {
+                                                      f = 1;
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    "Okay",
+                                                  ))
+                                            ],
+                                          );
+                                        });
+                                  }
+                                }),
                           ),
-                          onTap: () {
-                            setState(() {
-                              f = 1;
-                            });
-                          },
-                          onDoubleTap: () {
-                            setState(() {
-                              f = 0;
-                            });
-                          },
-                        ),
                         if (f == 1)
                           Padding(
                             padding: const EdgeInsets.all(70.0),
@@ -110,7 +154,12 @@ class _AllChatsPageState extends State<AllChatsPage> {
                                         MediaQuery.of(context).size.width / 9,
                                   ),
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Video()));
+                                    },
                                     child: CircleAvatar(
                                       radius: 40,
                                       backgroundColor: Colors.grey[100],
